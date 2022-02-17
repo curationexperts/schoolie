@@ -7,7 +7,8 @@ class SchoolieTest < Minitest::Test
     refute_nil ::Schoolie::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_it_has_a_version
+    assert_match(/\d+\.\d+\.\d+/, Schoolie::VERSION)
+    refute_nil Schoolie::VERSION
   end
 end
