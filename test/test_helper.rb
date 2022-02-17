@@ -5,6 +5,8 @@ require "schoolie"
 
 require "minitest/autorun"
 if ENV["COVERAGE"]
+  require "simplecov"
+  SimpleCov.start
   require "coveralls"
   Coveralls.wear!
 end

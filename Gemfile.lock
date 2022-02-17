@@ -8,7 +8,7 @@ GEM
   specs:
     ast (2.4.2)
     byebug (11.1.3)
-    coveralls (0.8.23)
+    coveralls-ruby (0.2.0)
       json (>= 1.8, < 3)
       simplecov (~> 0.16.1)
       term-ansicolor (~> 1.3)
@@ -56,12 +56,13 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  coveralls
+  coveralls-ruby
   minitest (~> 5.0)
   rake (~> 13.0)
   rubocop (~> 1.21)
   rubocop-minitest
   schoolie!
+  simplecov
 
 BUNDLED WITH
    2.2.33

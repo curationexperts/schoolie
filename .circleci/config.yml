@@ -14,22 +14,18 @@ jobs:
               chmod +x ./cc-test-reporter
               ./cc-test-reporter before-build
       - run:
-          name: Run the default task
+          name: Run rubocop
           command: |
             gem install bundler -v 2.2.33
             bundle install
-            bundle exec rake
-
+            bundle exec rake rubocop
       - run:
-          name: Generate CC coverage
-          command: ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
-
-      - persist_to_workspace:
-          root: coverage
-          paths: codeclimate.*.json
+          name: Run the test task
+          command: |
+            bundle exec rake test
 
       - deploy:
-          command: curl -k https://coveralls.io/webhook?repo_token=${COVERALLS_REPO_TOKEN} -d "payload[build_num]=${CIRCLE_BUILD_NUM}&payload[status]=done"
+          command: curl -k https://coveralls.io/webhook?repo_token=${COVERALLS_REPO_TOKEN} -d "payload[build_num]=${CIRCLE_WORKFLOW_ID}&payload[status]=done"
   coverage:
     docker:
         - image: circleci/ruby:2.7.4
