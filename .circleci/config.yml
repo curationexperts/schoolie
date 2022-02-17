@@ -1,6 +1,8 @@
 version: 2.1
 jobs:
   build:
+    environment:
+      COVERAGE: yes
     docker:
       - image: ruby:2.7.4
     steps:
