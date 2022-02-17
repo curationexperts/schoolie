@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject do |f|
-      (f == File.basename(__FILE__)) || 
-        f == "#{spec.name}-#{Schoolie::VERSION}.gem" || 
+      (f == File.basename(__FILE__)) ||
+        f == "#{spec.name}-#{Schoolie::VERSION}.gem" ||
         f.match(%r{\A(?:(?:test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
     end
   end
@@ -36,9 +36,9 @@ Gem::Specification.new do |spec|
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
+  spec.add_development_dependency "byebug", "~> 1.25"
   spec.add_development_dependency "minitest", "~> 5.15"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rubocop", "~> 1.25"
-  spec.add_development_dependency "byebug", "~> 1.25"
   spec.metadata["rubygems_mfa_required"] = "true"
 end
