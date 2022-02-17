@@ -1,6 +1,7 @@
 # Schoolie
 [![CircleCI](https://circleci.com/gh/curationexperts/schoolie/tree/main.svg?style=svg)](https://circleci.com/gh/curationexperts/schoolie/tree/main)
 <a href="https://codeclimate.com/github/curationexperts/schoolie/maintainability"><img src="https://api.codeclimate.com/v1/badges/bc6ef5bc9e76c6c3dcc9/maintainability" /></a>
+[![Coverage Status](https://coveralls.io/repos/github/curationexperts/schoolie/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/schoolie?branch=main)
 
 The gem that generates a site map and meta tags for google scholar (or will, anyway)
 
