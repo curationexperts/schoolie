@@ -44,6 +44,6 @@ class SchoolieTest < Minitest::Test
   def test_doesnt_blow_up_on_missing_method
     obj = Object.new
     assert_equal "<meta name=\"Institution\" value=\"Emory &amp; University\">",
-                 Foo.new.schoolie_tags(obj, "test/fixtures/schoolie.yml")
+                 Foo.new.schoolie_tags(obj, "test/fixtures/schoolie.yml").strip
   end
 end

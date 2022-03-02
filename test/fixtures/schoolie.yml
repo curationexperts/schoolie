@@ -1,9 +1,9 @@
 ---
-:static:
-  Institution: Emory & University
-:attributes:
-  Title: title
-  Author: creator
-  Abstract: abstract
-  Type: submitting_type
-  Date: degree_awarded
+static:
+  "Institution": Emory & University
+attributes:
+  "Title": title
+  "Author": creator
+  "Abstract": abstract
+  "Type": submitting_type
+  "Date": degree_awarded
