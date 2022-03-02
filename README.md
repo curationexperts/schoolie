@@ -45,7 +45,6 @@ concern object, and the value thus returned will be written into the meta tag.
 
 Missing methods will be ignored.
 
-There is also a rake task for generating a sitemap:
 
 ```
 bundle exec rails schoolie:sitemap

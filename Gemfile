@@ -5,7 +5,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in schoolie.gemspec
 gemspec
 
-gem "rails", "~>5"
+gem "actionview", "~>5"
 group :development, :test do
   gem "byebug"
   gem "coveralls-ruby", require: false
