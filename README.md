@@ -3,9 +3,7 @@
 <a href="https://codeclimate.com/github/curationexperts/schoolie/maintainability"><img src="https://api.codeclimate.com/v1/badges/bc6ef5bc9e76c6c3dcc9/maintainability" /></a>
 [![Coverage Status](https://coveralls.io/repos/github/curationexperts/schoolie/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/schoolie?branch=main)
 
-The gem that generates a site map and meta tags for google scholar (or will, anyway)
-
-Currently does nothing.
+The gem that generates a site map and meta tags for google scholar
 
 ## Installation
 
@@ -25,11 +23,41 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In order to map your particular metadata into the google scholar fields, create a file in Rails.root/config named schoolie.yml.
+
+
+This file should contain contents similar to this:
+
+```
+---
+:static:
+  Institution: Emory & University
+:attributes:
+  Title: title
+  Author: creator
+  Abstract: abstract
+  Type: submitting_type
+  Date: degree_awarded
+```
+
+The 'static' section will be written directly into the meta tags as is, attributes will be sent as method calls to the current curation
+concern object, and the value thus returned will be written into the meta tag.
+
+Missing methods will be ignored.
+
+There is also a rake task for generating a sitemap:
+
+```
+bundle exec rails schoolie:sitemap
+```
+
+This will generate a sitemap in public/sitemap.txt You should refer to this file in your robots.txt 
+
+NB. this task just uses curl to query solr currently, so make sure you have that installed first
 
 ## Development
 
-TBD
+Check out the repo, and bundle install as per normal.
 
 ## Contributing
 
