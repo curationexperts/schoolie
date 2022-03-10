@@ -30,14 +30,14 @@ This file should contain contents similar to this:
 
 ```
 ---
-:static:
-  Institution: Emory & University
-:attributes:
-  Title: title
-  Author: creator
-  Abstract: abstract
-  Type: submitting_type
-  Date: degree_awarded
+static:
+  citation_dissertation_institution: Your University
+attributes:
+  citation_title: title
+  citation_author: creator
+  citation_date: publication_date
+  citation_keywords: keywords
+  citation_pdf_url: permanent_url
 ```
 
 The 'static' section will be written directly into the meta tags as is, attributes will be sent as method calls to the current curation
