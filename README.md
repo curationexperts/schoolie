@@ -66,6 +66,39 @@ Call the helper like any other helper in your view:
 ```
 That's all there is to it!
 
+## SiteMaps
+
+If you'd like to generate a sitemap for your Hyrax-based application, a simple rake task can be used (not included in schoolie):
+
+```ruby
+  task sitemap: :environment do
+    date_field = 'system_modified_dtsi'
+    result = ActiveFedora::SolrService.query("has_model_ssim:MyModel",
+                                             fq: "selectin_criteria:here",
+                                             fl: "id,#{date_field}",
+                                             sort: "sort_field,sortfield ASC",
+                                             rows: 20_000)
+    ids = result.map do |x|
+      ["https://etd.example.com/concern/theses/#{x['id']}", x[date_field].to_s]
+    end
+    builder = Nokogiri::XML::Builder.new do |sitemap|
+      sitemap.urlset("xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+                 xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9",
+                 "xsi:schemaLocation": "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd") {
+                   ids.each { |url, date|
+                     sitemap.url {
+                       sitemap.loc url
+                       sitemap.lastmod date
+                     }
+                   }
+                 }
+    end
+    File.open(Rails.root.join("public", "sitemap.xml"), "w") { |f| f.write(builder.to_xml) }
+end
+```
+
+Don't forget to add your sitemap url to robots.txt too!
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/schoolie. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/schoolie/blob/master/CODE_OF_CONDUCT.md).
