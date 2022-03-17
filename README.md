@@ -3,8 +3,7 @@
 <a href="https://codeclimate.com/github/curationexperts/schoolie/maintainability"><img src="https://api.codeclimate.com/v1/badges/bc6ef5bc9e76c6c3dcc9/maintainability" /></a>
 [![Coverage Status](https://coveralls.io/repos/github/curationexperts/schoolie/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/schoolie?branch=main)
 
-The gem that generates a site map and meta tags for google scholar (or any other tags you might want)
-
+A gem that generates a site map and meta tags for google scholar (or any other tags you might want)
 
 ## Installation
 
@@ -26,19 +25,28 @@ Or install it yourself as:
 
 Install your schoolie configuration file in ```config/schoolie.yml```
 
-The configuration file looks like this:
+This file should contain contents similar to this:
 
 ```
 ---
 static:
-  citation_dissertation_institution: My University
+  citation_dissertation_institution: Your University
 attributes:
   citation_title: title
   citation_author: creator
-  citation_date: degree_awarded
-  citation_dissertation_type: submitting_type
-  citation_keywords: research_field
-  citation_pdf_url: download_url
+  citation_date: publication_date
+  citation_keywords: keywords
+  citation_pdf_url: permanent_url
+```
+
+The 'static' section will be written directly into the meta tags as is, attributes will be sent as method calls to the current curation
+concern object, and the value thus returned will be written into the meta tag.
+
+Missing methods will be ignored.
+
+
+```
+bundle exec rails schoolie:sitemap
 ```
 
 The 'static' section maps a particular meta tag name to a static string
@@ -57,7 +65,6 @@ Call the helper like any other helper in your view:
 <%= schoolie_tags my_object %>
 ```
 That's all there is to it!
-
 
 ## Contributing
 
