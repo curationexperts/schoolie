@@ -10,11 +10,16 @@ module SchoolieHelper
     tags = m["static"].map do |k, v|
       tag.meta(name: k, value: v)
     end
-    tags << m["attributes"].map do |k, v|
-      tag.meta(name: k, value: concern.send(v))
-    rescue StandardError
-      warn("Undefined attribute mapping: #{k} -> #{v}")
-    end
+    tags =  m["attributes"].inject(tags) do |m, (k, v)|
+      begin
+        [concern.send(v)].flatten.each do |z|
+          m << tag.meta(name: k, value: z)
+        end
+        rescue StandardError
+          warn("Undefined attribute mapping: #{k} -> #{v}")
+        end
+      m
+      end
     tags.join("\n")
   end
 
