@@ -7,23 +7,24 @@ require "yaml"
 module SchoolieHelper
   def schoolie_tags(concern, config = Rails.root.join("config/schoolie.yml"))
     m = load_map(config)
-    tags = m["static"].map do |k, v|
-      tag.meta(name: k, value: v)
-    end
-    tags =  m["attributes"].inject(tags) do |m, (k, v)|
-      begin
-        [concern.send(v)].flatten.each do |z|
-          m << tag.meta(name: k, value: z)
-        end
-        rescue StandardError
-          warn("Undefined attribute mapping: #{k} -> #{v}")
-        end
-      m
+    tags = load_statics(m)
+    tags = m["attributes"].each_with_object(tags) do |(k, v), r|
+      [concern.send(v)].flatten.each do |z|
+        r << tag.meta(name: k, value: z)
       end
+    rescue StandardError
+      warn("Undefined attribute mapping: #{k} -> #{v}")
+    end
     tags.join("\n")
   end
 
   private
+
+  def load_statics(map)
+    map["static"].map do |k, v|
+      tag.meta(name: k, value: v)
+    end
+  end
 
   def load_map(config)
     @load_map ||= YAML.safe_load(File.open(config, "r"), [Symbol])

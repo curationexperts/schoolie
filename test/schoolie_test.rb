@@ -21,7 +21,7 @@ class SchoolieTest < Minitest::Test
   def test_has_a_helper_and_it_escapes_html
     obj = Minitest::Mock.new
     obj.expect(:title, "title")
-    obj.expect(:creator, ["creator", "another_creator"])
+    obj.expect(:creator, %w[creator another_creator])
     obj.expect(:abstract, "abstract")
     obj.expect(:submitting_type, "submitting_type")
     obj.expect(:degree_awarded, "<&*éüç")
