@@ -3,7 +3,7 @@
 <a href="https://codeclimate.com/github/curationexperts/schoolie/maintainability"><img src="https://api.codeclimate.com/v1/badges/bc6ef5bc9e76c6c3dcc9/maintainability" /></a>
 [![Coverage Status](https://coveralls.io/repos/github/curationexperts/schoolie/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/schoolie?branch=main)
 
-A gem that generates a site map and meta tags for google scholar (or any other tags you might want)
+A gem that generates meta tags for google scholar (or any other tags you might want)
 
 ## Installation
 
