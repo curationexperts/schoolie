@@ -30,7 +30,7 @@ This file should contain contents similar to this:
 ```
 ---
 static:
-  citation_dissertation_institution: Your University
+  citation_institution: Your University
 attributes:
   citation_title: title
   citation_author: creator
